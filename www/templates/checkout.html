@@ -6,7 +6,7 @@
       <!--Address Header-->
       <label ng-click="addManipulation()" class="item item-input  item ic-selected" >
         <a class="icon icon-right ion-ios-location" style="margin-right: 10px;" ></a>
-        Address
+        กรุณากรอกที่อยู่
         <i  class="icon icon-right ion-android-add-circle" style="font-size: larger ;margin-left: 10px;"></i>
       </label>
 
@@ -26,16 +26,16 @@
 
 
       <!--Payment Header-->
-      <label ng-click="addManipulation()" class="item item-input  item ic-selected" >
+      <!-- <label ng-click="addManipulation()" class="item item-input  item ic-selected" >
         <a class="icon icon-right ion-cash" style="margin-right: 10px;" ></a>
         Mode of Pay
-      </label>
+      </label> -->
 
 
       <!-- Payment Options -->
-      <ion-list  ng-repeat="item in payments">
+      <!-- <ion-list  ng-repeat="item in payments">
           <ion-radio name="pay_group" ng-value="item.id" ng-model="$parent.pay_choice" > {{item.name}} </ion-radio>
-      </ion-list>
+      </ion-list> -->
 
 
       <button type="submit" class=" button button-calm  button-block icon-right ion-android-arrow-forward ">

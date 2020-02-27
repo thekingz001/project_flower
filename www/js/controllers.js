@@ -363,8 +363,8 @@ angular.module('app.controllers', [])
 
       if(edit_val!=null) {
         $scope.data = edit_val; // For editing address
-        var title="Edit Address";
-        var sub_title="Edit your address";
+        var title="กรุณากรอกที่อยู่";
+        var sub_title="กรุณากรอกที่อยู่ใหม่ของท่าน";
       }
       else {
         $scope.data = {};    // For adding new address
@@ -373,17 +373,16 @@ angular.module('app.controllers', [])
       }
       // An elaborate, custom popup
       var addressPopup = $ionicPopup.show({
-        template: '<input type="text"   placeholder="Nick Name"  ng-model="data.nickname"> <br/> ' +
-                  '<input type="text"   placeholder="Address" ng-model="data.address"> <br/> ' +
-                  '<input type="number" placeholder="Pincode" ng-model="data.pin"> <br/> ' +
-                  '<input type="number" placeholder="Phone" ng-model="data.phone">',
+        template: '<input type="text"   placeholder="ชื่อ - สกุล"  ng-model="data.nickname"> <br/> ' +
+        '<input type="text"   placeholder="ที่อยู่" ng-model="data.address"> <br/> ' +
+        '<input type="number" placeholder="เบอร์โทรศัพท์" ng-model="data.phone">',
         title: title,
         subTitle: sub_title,
         scope: $scope,
         buttons: [
-          { text: 'Close' },
+          { text: 'ปิด' },
           {
-            text: '<b>Save</b>',
+            text: '<b>บันทึก</b>',
             type: 'button-positive',
             onTap: function(e) {
               if (!$scope.data.nickname || !$scope.data.address || !$scope.data.pin || !$scope.data.phone ) {
@@ -558,27 +557,26 @@ angular.module('app.controllers', [])
 
       if(edit_val!=null) {
         $scope.data = edit_val; // For editing address
-        var title="Edit Address";
-        var sub_title="Edit your address";
+        var title="กรุณากรอกที่อยู่";
+        var sub_title="กรุณากรอกที่อยู่ใหม่ของท่าน";
       }
       else {
         $scope.data = {};    // For adding new address
-        var title="Add Address";
-        var sub_title="Add your new address";
+        var title="กรุณากรอกที่อยู่";
+        var sub_title="กรุณากรอกที่อยู่ใหม่ของท่าน";
       }
       // An elaborate, custom popup
       var addressPopup = $ionicPopup.show({
-        template: '<input type="text"   placeholder="Nick Name"  ng-model="data.nickname"> <br/> ' +
-        '<input type="text"   placeholder="Address" ng-model="data.address"> <br/> ' +
-        '<input type="number" placeholder="Pincode" ng-model="data.pin"> <br/> ' +
-        '<input type="number" placeholder="Phone" ng-model="data.phone">',
+        template: '<input type="text"   placeholder="ชื่อ - สกุล"  ng-model="data.nickname"> <br/> ' +
+        '<input type="text"   placeholder="ที่อยู่" ng-model="data.address"> <br/> ' +
+        '<input type="number" placeholder="เบอร์โทรศัพท์" ng-model="data.phone">',
         title: title,
         subTitle: sub_title,
         scope: $scope,
         buttons: [
-          { text: 'Close' },
+          { text: 'ปิด' },
           {
-            text: '<b>Save</b>',
+            text: '<b>บันทึก</b>',
             type: 'button-positive',
             onTap: function(e) {
               if (!$scope.data.nickname || !$scope.data.address || !$scope.data.pin || !$scope.data.phone ) {
