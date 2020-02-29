@@ -7,96 +7,148 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-
-
-  .state('tabsController', {
-    url: '/page1',
-    templateUrl: 'templates/tabsController.html',
-    abstract:true
-  })
-
-  .state('tabsController.login', {
-    url: '/page5',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/login.html',
-        controller: 'loginCtrl'
-      }
-    }
-  })
-
-  .state('tabsController.signup', {
-    url: '/page6',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/signup.html',
-        controller: 'signupCtrl'
-      }
-    }
-  })
-
-  .state('menu2', {
-      url: '/page7',
-      templateUrl: 'templates/menu2.html',
-      controller: 'menu2Ctrl'
+    
+      
+        
+    .state('menu', {
+      url: '/page1',
+      templateUrl: 'templates/menu.html',
+      controller: 'menuCtrl'
     })
+        
+      
+    
+      
+        
+    .state('cart', {
+      url: '/page2',
+      templateUrl: 'templates/cart.html',
+      controller: 'cartCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('checkOut', {
+      url: '/page3',
+      templateUrl: 'templates/checkOut.html',
+      controller: 'checkOutCtrl'
+    })
+	
+	
+	
 
 
-  .state('offers', {
-    url: '/page8',
-    templateUrl: 'templates/offers.html',
-    controller: 'offersCtrl'
-  })
+      
+        
+    .state('login', {
+      url: '/page4',
+      templateUrl: 'templates/login.html',
+      controller: 'loginCtrl',
+	  
+		resolve:{
+			"check":function($location){  
+				if(sessionStorage.getItem('loggedin_id')){ $location.path('/page9');   }
+				else									 {  $location.path('/page4');   }
+			}
+		}
+    })
+        
+      
+    
+      
+        
+    .state('signup', {
+      url: '/page5',
+      templateUrl: 'templates/signup.html',
+      controller: 'signupCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('filterBy', {
+      url: '/page6',
+      templateUrl: 'templates/filterBy.html',
+      controller: 'filterByCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('sortBy', {
+      url: '/page7',
+      templateUrl: 'templates/sortBy.html',
+      controller: 'sortByCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('payment', {
+      url: '/page8',
+      templateUrl: 'templates/payment.html',
+      controller: 'paymentCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('profile', {
+      url: '/page9',
+      templateUrl: 'templates/profile.html',
+      controller: 'profileCtrl'  
+    })
+        
+      
+    
+      
+        
+    .state('myOrders', {
+      url: '/page10',
+      templateUrl: 'templates/myOrders.html',
+      controller: 'myOrdersCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('editProfile', {
+      url: '/page11',
+      templateUrl: 'templates/editProfile.html',
+      controller: 'editProfileCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('favorates', {
+      url: '/page12',
+      templateUrl: 'templates/favorates.html',
+      controller: 'favoratesCtrl'
+    })
+        
+      
+    
+      
+        
+    .state('productPage', {
+      url: '/page13',
+      templateUrl: 'templates/productPage.html',
+      controller: 'productPageCtrl'
+    })
+        
+      
+    ;
 
-  .state('myCart', {
-    url: '/page9',
-    templateUrl: 'templates/myCart.html',
-    controller: 'myCartCtrl'
-  })
-
-  .state('lastOrders', {
-    url: '/page10',
-    templateUrl: 'templates/lastOrders.html',
-    controller: 'lastOrdersCtrl'
-  })
-
-  .state('favourite', {
-    url: '/page11',
-    templateUrl: 'templates/favourite.html',
-    controller: 'favouriteCtrl'
-  })
-
-  .state('settings', {
-    url: '/page12',
-    templateUrl: 'templates/settings.html',
-    controller: 'settingsCtrl'
-  })
-
-  .state('support', {
-    url: '/page13',
-    templateUrl: 'templates/support.html',
-    controller: 'supportCtrl'
-  })
-
-  .state('checkout', {
-    url: '/page16',
-    templateUrl: 'templates/checkout.html',
-    controller: 'checkoutCtrl'
-  })
-
-  .state('tabsController.forgotPassword', {
-    url: '/page15',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/forgotPassword.html',
-        controller: 'forgotPasswordCtrl'
-      }
-    }
-  })
-
-$urlRouterProvider.otherwise('/page1/page5')
-
-
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/page1');
 
 });

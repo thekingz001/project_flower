@@ -1,50 +1,39 @@
-<ion-view title="Checkout"  id="page16" >
-  <ion-content padding="false" class="has-header">
-
-    <form name="checkoutForm" class="list " ng-submit="pay(address_choice,pay_choice)" >
-
-      <!--Address Header-->
-      <label ng-click="addManipulation()" class="item item-input  item ic-selected" >
-        <a class="icon icon-right ion-ios-location" style="margin-right: 10px;" ></a>
-        กรุณากรอกที่อยู่
-        <i  class="icon icon-right ion-android-add-circle" style="font-size: larger ;margin-left: 10px;"></i>
-      </label>
-
-
-      <!-- Address -->
-      <ion-list ng-repeat="item in addresses" >
-          <ion-radio name="addr_group" ng-value="item.$id" ng-model="$parent.address_choice">
-            <a class="icon icon-right ion-ios-location"></a>
-            {{item.nickname}} <br/>
-            {{item.address}} <br/>
-            Pin : {{item.pin}}<br/>
-            Phone : {{item.phone}}
-          </ion-radio>
-      </ion-list>
-
-
-
-
-      <!--Payment Header-->
-      <!-- <label ng-click="addManipulation()" class="item item-input  item ic-selected" >
-        <a class="icon icon-right ion-cash" style="margin-right: 10px;" ></a>
-        Mode of Pay
-      </label> -->
-
-
-      <!-- Payment Options -->
-      <!-- <ion-list  ng-repeat="item in payments">
-          <ion-radio name="pay_group" ng-value="item.id" ng-model="$parent.pay_choice" > {{item.name}} </ion-radio>
-      </ion-list> -->
-
-
-      <button type="submit" class=" button button-calm  button-block icon-right ion-android-arrow-forward ">
-        PAY
-      </button>
-
-    </form>
-
-  </ion-content>
-
-
+<ion-view title="Check Out">
+    <ion-content padding="'true'" class="has-header">
+		<div ng-show="loggedin()" >
+			<div class="button-bar">
+				<a href="#/page4" class="button button-balanced button-block ">เข้าสู่ระบบ</a>
+				<a href="#/page5" class="button button-calm button-block ">Register</a>
+			</div>
+			<div>
+				<p>Or</p>
+			</div>
+		</div>
+        <form class="list">
+            <label class="item item-input">
+                <span class="input-label" style="padding-right:75px">ชื่อ*</span>
+                <textarea placeholder="" > {{" "+loggedin_name}}</textarea>
+            </label>
+            <label class="item item-input">
+                <span class="input-label" style="padding-right:10px" >เบอร์โทรศัพท์*</span>
+                <textarea placeholder=""  > {{" "+loggedin_phone}}</textarea>
+            </label>
+            <label class="item item-input">
+                <span class="input-label" style="padding-right:0px">ที่อยู่*</span>
+				<textarea placeholder=""  > {{" "+loggedin_address}}</textarea>
+            </label>
+            <label class="item item-input">
+                <span class="input-label" style="padding-right:15px">รหัสไปษรณีย์*</span>
+                 <textarea placeholder=""  > {{" "+loggedin_pincode}}</textarea>
+            </label>
+        </form>
+        <div class="spacer" style="width: 300px; height: 15px;"></div>
+        <form class="list">
+            <label class="item item-input">
+                <span class="input-label">Coupon</span>
+                <input type="text" placeholder="(Optional)">
+            </label>
+        </form>
+        <a href="#/page8" class="button button-balanced button-outline button-block ">Check Out</a>
+    </ion-content>
 </ion-view>

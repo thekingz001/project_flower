@@ -1,31 +1,20 @@
-<ion-view style="" class=" " id="page5" title="Login">
-    <ion-content class="has-header" padding="true" style="background: url(img/bg1.jpg) center; background-size: cover;">
-
-
-
-
-		<form name="loginForm" class="list " id="login-form1">
-            <ion-list class=" " id="login-list2">
-
-                <div class="app-icon"></div>
-
-                <label class="item item-input item-floating-label">
-                    <span class="input-label" style="color: #9F9F9F;">Email</span>
-                    <input ng-model="user.email" style="color: white;" type="email" placeholder="Email">
+<ion-view title="Login">
+    <ion-content padding="'true'" class="has-header">
+        <form name="test" class="list" >
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">อีเมล์</span>
+                    <input ng-model="user.email" type="email" placeholder="" >
                 </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label" style="color: #9F9F9F;" >Password</span>
-                    <input ng-model="user.password" style="color: white;" type="password" placeholder="Password">
+                <label class="item item-input">
+                    <span class="input-label">รหัสผ่าน</span>
+                    <input ng-model="user.password" type="password" placeholder="">
                 </label>
-
             </ion-list>
-
-            <div style="height: 40px;" class="spacer"></div>
-            <button ng-click="loginEmail(loginForm,user)" class=" button button-assertive  button-block  icon-left ion-ios-email-outline "  id="signup-button3">LOGIN WITH EMAIL</button>
-            <!-- <button ng-click="loginFb('facebook')" class=" button button-positive  button-block icon-left ion-social-facebook "  id="signup-button4">LOGIN WITH FACEBOOK</button> -->
+            <div class="spacer" style="height: 40px;"></div>
+            <button  class="button button-stable button-block " ng-click="login(test, user)" >เข้าสู่ระบบ</button>
+			
+            <a href="#/page5" class="button button-positive button-clear button-block ">สร้างบัญชีใหม่</a>
         </form>
-
-		<!-- <a class=" button button-stable  button-block button-clear icon-left ion-ios-email-outline " id="login-button5" ui-sref="tabsController.forgotPassword">FORGOT PASSWORD</a> -->
-
-	</ion-content>
+    </ion-content>
 </ion-view>

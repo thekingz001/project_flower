@@ -1,0 +1,18 @@
+<ion-view title="Sort By">
+    <ion-content padding="'true'" class="has-header">
+        
+		<form class="list" ng-submit="sort(sortby)">	
+			
+		 <ion-list>
+			<ion-radio ng-model="sortby" ng-value="'n'" >ชื่อ</ion-radio>
+			<ion-radio ng-model="sortby" ng-value="'plh'" >ราคา (ต่ำ-สูง)</ion-radio>
+			<ion-radio ng-model="sortby" ng-value="'phl'" >ราคา (สูง-ต่ำ)</ion-radio>
+		 </ion-list>
+		 
+		 <div class="list box">
+			<button class="button button-block button-calm" type="submit">ตกลง</button>
+		</div>  
+			
+        </form>
+    </ion-content>
+</ion-view>
