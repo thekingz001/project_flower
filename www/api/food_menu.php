@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "root", "12345678", "flower2");
+$conn = new mysqli("localhost", "root", "", "flower2");
 
 	$till=10;
 	
