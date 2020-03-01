@@ -11,20 +11,20 @@
 		</div>
         <form class="list">
             <label class="item item-input">
-                <span class="input-label" style="padding-right:75px">ชื่อ*</span>
-                <textarea placeholder="" > {{" "+loggedin_name}}</textarea>
+                <span class="input-label" style="padding-right:75px">ชื่อ-สกุล*</span>
+                <textarea placeholder="{{loggedin_name}}" ng-model="check.name"></textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label" style="padding-right:10px" >เบอร์โทรศัพท์*</span>
-                <textarea placeholder=""  > {{" "+loggedin_phone}}</textarea>
+                <textarea placeholder="{{loggedin_phone}}"  ng-model="check.phone"></textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label" style="padding-right:0px">ที่อยู่*</span>
-				<textarea placeholder=""  > {{" "+loggedin_address}}</textarea>
+				<textarea placeholder="{{loggedin_address}}"  ng-model="check.address"></textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label" style="padding-right:15px">รหัสไปษรณีย์*</span>
-                 <textarea placeholder=""  > {{" "+loggedin_pincode}}</textarea>
+                 <textarea placeholder="{{loggedin_pincode}}"  ng-model="check.pincode"></textarea>
             </label>
         </form>
         <div class="spacer" style="width: 300px; height: 15px;"></div>
@@ -35,6 +35,6 @@
             </label>
         </form> -->
         <!-- <a href="#/page8" class="button button-balanced button-outline button-block ">Check Out</a> -->
-        <button class="button button-balanced button-outline button-block" ng-click="bt()" >Check Out</button>
+        <button class="button button-balanced button-block" ng-click="bt()" >Check Out</button>
     </ion-content>
 </ion-view>

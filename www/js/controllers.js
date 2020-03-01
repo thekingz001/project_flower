@@ -123,7 +123,7 @@ angular.module('app.controllers', [])
 
 	})
 
-	.controller('checkOutCtrl', function ($scope) {
+	.controller('checkOutCtrl', function ($scope, $state) {
 		$scope.loggedin = function () {
 			if (sessionStorage.getItem('loggedin_id') == null) { return 1; }
 			else {
@@ -134,14 +134,16 @@ angular.module('app.controllers', [])
 				$scope.loggedin_pincode = sessionStorage.getItem('loggedin_pincode');
 				return 0;
 			}
+
 		};
 
 		$scope.bt = function () {
-			
-		  $bt = confirm("Press a button!");
-		  if($bt == true){
 			$state.go('payment');
-		  }
+			// console.log(sessionStorage);
+			//   $bt = confirm("Press a button!");
+			//   if($bt == true){
+			// 	
+			//   }
 
 		};
 
@@ -161,7 +163,7 @@ angular.module('app.controllers', [])
 			var link = 'http://localhost/api/user-details.php';
 			$http.post(link, { us: user.username, ps: user.password })
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					$scope.user_details = res.data.records;
 					sessionStorage.setItem('loggedin_name', $scope.user_details.u_name);
 					sessionStorage.setItem('loggedin_id', $scope.user_details.u_id);
@@ -174,7 +176,7 @@ angular.module('app.controllers', [])
 						disableBack: true
 					});
 					lastView = $ionicHistory.backView();
-					console.log('Last View', lastView);
+					// console.log('Last View', lastView);
 					//BUG to be fixed soon
 					/*if(lastView.stateId=="checkOut"){ $state.go('checkOut', {}, {location: "replace", reload: true}); }
 					else{*/
@@ -222,7 +224,7 @@ angular.module('app.controllers', [])
 					// console.log($scope.response);
 					if ($scope.response.result.created == "1") {
 						$scope.title = "สมัครเสร็จสิ้น!";
-						$scope.template = "Your account has been successfully created!";
+						$scope.template = "คุณเป็นสมชิกเรียบร้อยแล้ว!";
 
 						//no back option
 						$ionicHistory.nextViewOptions({
@@ -232,12 +234,12 @@ angular.module('app.controllers', [])
 						$state.go('login', {}, { location: "replace", reload: true });
 
 					} else if ($scope.response.result.exists == "1") {
-						$scope.title = "มีผู้ใช้ชื่อผู้ใช้นี้แล้ว";
-						$scope.template = "Please click forgot password if necessary";
+						$scope.title = "มีผู้ใช้ชื่อผู้เข้าใช้นี้แล้ว";
+						$scope.template = "กรุณาเปลี่ยนชื่อผู้เข้าใช้งาน";
 
 					} else {
 						$scope.title = "ล้มเหลว";
-						$scope.template = "Contact Our Technical Team";
+						$scope.template = "กรุณาติดต่อทีมงาน";
 					}
 
 					var alertPopup = $ionicPopup.alert({
@@ -245,7 +247,7 @@ angular.module('app.controllers', [])
 						template: $scope.template
 					});
 
-
+					1
 				});
 
 		}
@@ -260,6 +262,8 @@ angular.module('app.controllers', [])
 		];
 
 		$scope.getCategory = function (cat_list) {
+			console.log(cat_list);
+
 			categoryAdded = cat_list;
 			var c_string = ""; // will hold the category as string
 
@@ -281,7 +285,55 @@ angular.module('app.controllers', [])
 		};
 	})
 
-	.controller('paymentCtrl', function ($scope) {
+	.controller('paymentCtrl', function ($scope, $http, $state) {
+
+		//onload event
+		angular.element(document).ready(function () {
+			$scope.id = sessionStorage.getItem('product_info_id');
+			$scope.desc = sessionStorage.getItem('product_info_desc');
+			$scope.img = "img/" + sessionStorage.getItem('product_info_img') + ".jpg";
+			$scope.name = sessionStorage.getItem('product_info_name');
+			$scope.price = sessionStorage.getItem('product_info_price');
+		});
+
+		$scope.Payment = [
+			{ id: 1, name: 'ชำระเงินผ่านบัตรเครดิต' },
+			{ id: 2, name: 'ชำระเงินผ่านแอป' },
+			{ id: 3, name: 'COD' }
+		];
+
+		$scope.data = 'Male';
+
+		$scope.loggedin = function () {
+			if (sessionStorage.getItem('loggedin_id') == null) { return 1; }
+			else {
+				$scope.loggedin_name = sessionStorage.getItem('loggedin_name');
+				$scope.loggedin_id = sessionStorage.getItem('loggedin_id');
+				$scope.loggedin_phone = sessionStorage.getItem('loggedin_phone');
+				$scope.loggedin_address = sessionStorage.getItem('loggedin_address');
+				$scope.loggedin_pincode = sessionStorage.getItem('loggedin_pincode');
+				return 0;
+			}
+
+		};
+
+		$scope.payment = function (pay) {
+
+			// console.log(pay);
+			// console.log(sessionStorage);
+			if (pay) {
+				$sess = sessionStorage;
+				// console.log($sess);
+				
+				$link = 'http://localhost/api/payment.php';
+				$http.post($link, { sess: $sess, pay: pay })
+					.then(function (res) {
+						console.log(res);
+					});
+			}
+
+		};
+
 
 	})
 
@@ -301,7 +353,7 @@ angular.module('app.controllers', [])
 			delete sessionStorage.loggedin_address;
 			delete sessionStorage.loggedin_pincode;
 
-			console.log('Logoutctrl', sessionStorage.getItem('loggedin_id'));
+			// console.log('Logoutctrl', sessionStorage.getItem('loggedin_id'));
 
 			$ionicHistory.nextViewOptions({
 				disableAnimate: true,
@@ -323,7 +375,7 @@ angular.module('app.controllers', [])
 
 	})
 
-	.controller('productPageCtrl', function ($scope) {
+	.controller('productPageCtrl', function ($scope, sharedCartService) {
 
 		//onload event
 		angular.element(document).ready(function () {
@@ -334,6 +386,11 @@ angular.module('app.controllers', [])
 			$scope.price = sessionStorage.getItem('product_info_price');
 		});
 
-
+		//put cart after menu
+		var cart = sharedCartService.cart;
+		//add to cart function
+		$scope.addToCart = function (id, image, name, price) {
+			cart.add(id, image, name, price, 1);
+		};
 	})
 

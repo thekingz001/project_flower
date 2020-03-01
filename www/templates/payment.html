@@ -1,10 +1,23 @@
 <ion-view title="Payment">
     <ion-content padding="'true'" class="has-header">
-        <form class="list">
-            <ion-radio>ชำระเงินผ่านบัตรเครดิต</ion-radio>
-            <ion-radio>ชำระเงินผ่านแอป</ion-radio>
-            <ion-radio>COD</ion-radio>
+        <form ng-submit="payment(pay)">
+            <!-- <ion-list ng-repeat=" category in Categories">
+            <ion-checkbox ng-model="category.selected">
+                <h2 class="calm">{{category.name}}</h2>
+            </ion-checkbox>
+            </ion-list> -->
+
+            <!-- <ion-list ng-repeat=" payment in Payment">
+                    <ion-radio ng-model="pay" name="{{payment.id}}" ng-value="'{{payment.id}}'">
+                        <h2 class="calm">{{payment.name}}</h2>
+                    </ion-radio>
+            </ion-list> -->
+
+            <ion-radio class="calm" ng-model="pay" ng-value="'1'">ชำระเงินผ่านบัตรเครดิต</ion-radio>
+            <ion-radio class="calm" ng-model="pay" ng-value="'2'">ชำระเงินผ่านแอป</ion-radio>
+            <ion-radio class="calm" ng-model="pay" ng-value="'3'">COD</ion-radio>
+
+            <button class="button button-calm button-block" type="submit">ชำระเงิน</button>
         </form>
-        <button class="button button-calm button-block ">ชำระเงิน</button>
     </ion-content>
 </ion-view>

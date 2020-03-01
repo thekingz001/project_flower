@@ -2,17 +2,16 @@
     <ion-content padding="'true'" class="has-header">
         <img ng-src="{{img}}" width="100%" height="auto" style="width: 100%; height: auto;">
         <div class="button-bar">
-            <button class="button button-positive button-clear button-block  icon ion-android-cart"></button>
-            <button class="button button-assertive button-clear button-block  icon ion-android-favorite-outline"></button>
-            <button class="button button-balanced button-clear button-block  icon ion-share"></button>
+            
         </div>
         <div class="list card">
-            <div class="item item-divider">รายละเอียด</div>
+            <div class="item item-divider"><b>รายละเอียด</b></div>
             <div class="item item-body">
                 <div>
 					<p> {{name}}</p>
                     <p>{{desc}}</p>
-                    <p>ราคา: {{price}} บาท</p>
+                    <b><p>ราคา: {{price}} บาท</p></b>
+                    <a  ng-click="addToCart()" class="button  button-balanced button-clear   icon ion-android-cart">  </a>
                 </div>
             </div>
         </div>

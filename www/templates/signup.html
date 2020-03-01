@@ -3,7 +3,7 @@
         <form class="list">
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">ชื่อ</span>
+                    <span class="input-label">ชื่อ-สกุล</span>
                     <input type="text" placeholder="" ng-model="data.name">
                 </label>
                 <label class="item item-input">
@@ -16,7 +16,7 @@
                 </label>
                 <label class="item item-input">
                     <span class="input-label">เบอร์โทรศัพท์</span>
-                    <input type="number" placeholder="" ng-model="data.phone">
+                    <input type="text" placeholder="" ng-model="data.phone">
                 </label>
             </ion-list>
             <label class="item item-input">
@@ -27,7 +27,7 @@
                 <span class="input-label">รหัสไปรษณีย์</span>
                 <input type="number" placeholder="" ng-model="data.pincode">
             </label>
-            <button ng-click="signup(data)" class="button button-stable button-block ">ลงชื่อเข้าใช้</button>
+            <button ng-click="signup(data)" class="button button-balanced button-block">ลงทะเบียน</button>
         </form>
     </ion-content>
 </ion-view>

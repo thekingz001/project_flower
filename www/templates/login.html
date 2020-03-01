@@ -3,8 +3,8 @@
         <form class="list" >
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">อีเมล์</span>
-                    <input ng-model="user.username" type="text" placeholder="" >
+                    <span class="input-label">ชื่อผู้เข้าใช้</span>
+                    <input style="color: rgb(0, 0, 0);" ng-model="user.username" type="text" placeholder="" >
                 </label>
                 <label class="item item-input">
                     <span class="input-label">รหัสผ่าน</span>
@@ -12,9 +12,9 @@
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <button  class="button button-stable button-block " ng-click="login(user)" >เข้าสู่ระบบ</button>
+            <button  class="button button-balanced button-block" ng-click="login(user)" >เข้าสู่ระบบ</button>
 			
-            <a href="#/page5" class="button button-positive button-clear button-block ">สร้างบัญชีใหม่</a>
+            <a href="#/page5" class="button button-balanced button-outline button-block">สร้างบัญชีใหม่</a>
         </form>
     </ion-content>
 </ion-view>

@@ -1,57 +1,50 @@
 <ion-view title="Profile">
     <ion-content padding="'true'" class="has-header">
-	
-		
-		
 
-		
+        <ion-list>
 
-		
+            <ion-item class="item-divider">รายละเอียด</ion-item>
 
-        
-		<ion-list>
-            
-			<ion-item class="item-divider">รายละเอียด</ion-item>
-			
-			
-			<label class="item item-input">
-                <span class="input-label">ชื่อ</span>
-				<textarea placeholder="" readonly> {{" "+loggedin_name}}</textarea>
-            </label>
-			
-			<label class="item item-input">
-                <span class="input-label">อีเมล์</span>
-				<textarea placeholder="" readonly>{{" "+loggedin_id}} </textarea>
+
+            <label class="item item-input">
+                <span class="input-label">ชื่อ-สกุล</span>
+                <textarea placeholder="" readonly> {{loggedin_name}}</textarea>
             </label>
 
-			<label class="item item-input">
+            <label class="item item-input">
+                <span class="input-label">ชื่อผู้เข้าใช้</span>
+                <textarea placeholder="" readonly>{{" "+loggedin_id}} </textarea>
+            </label>
+
+            <label class="item item-input">
                 <span class="input-label">เบอร์โทรศัพท์</span>
-				<textarea placeholder="" readonly > {{" "+loggedin_phone}}</textarea>
+                <textarea placeholder="" readonly> {{loggedin_phone}}</textarea>
             </label>
-	
-            
+
+
             <label class="item item-input">
                 <span class="input-label">ที่อยู่</span>
-				<textarea placeholder="" readonly > {{" "+loggedin_address}}</textarea>
+                <textarea placeholder="" readonly> {{" "+loggedin_address}}</textarea>
             </label>
-			
+
             <label class="item item-input">
                 <span class="input-label">รหัสไปรษณีย์</span>
-                <textarea placeholder="" readonly > {{" "+loggedin_pincode}}</textarea>
+                <textarea placeholder="" readonly> {{" "+loggedin_pincode}}</textarea>
             </label>
-			
-		
-		<div class="button-bar">
-            <a href="#/page10" class="button button-stable button-block  icon ion-android-alarm-clock"></a>
+
+
+            <div class="button-bar">
+                <!-- <a href="#/page10" class="button button-stable button-block  icon ion-android-alarm-clock"></a>
             <a href="#/page11" class="button button-stable button-block  icon ion-edit"></a>
-            <a href="#/page12" class="button button-stable button-block  icon ion-android-favorite"></a>
-        </div>
-		
-			<button ng-click="logout()" class="button button-balanced button-block  icon-left ion-log-out">ออกจากระบบ</button>
-			
-			<a href="tel:+918281787181" class="button button-calm button-block  icon-left ion-android-call">โทรหาเรา</a>
-			
-	        </ion-list>
-        
+            <a href="#/page12" class="button button-stable button-block  icon ion-android-favorite"></a> -->
+            </div>
+
+            <button ng-click="logout()"
+                class="button button-balanced button-block  icon-left ion-log-out">ออกจากระบบ</button>
+
+            <a href="tel:+918281787181" class="button button-calm button-block  icon-left ion-android-call">โทรหาเรา</a>
+
+        </ion-list>
+
     </ion-content>
 </ion-view>
