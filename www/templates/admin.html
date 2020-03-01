@@ -1,0 +1,17 @@
+<ion-view title="admin">
+  <ion-content padding="'true'" class="has-header">
+    <form class="list">
+      <ion-list ng-repeat="admin in admin">
+        <h2> ชื่อ - สกุล: {{admin.payment_name}} </h2>
+        <pre>ที่อยู่ : {{admin.payment_address}} {{admin.payment_pincode}}
+เบอร์โทร: {{admin.payment_phone}}
+ยอดที่ต้องชำระ: {{admin.payment_price}}
+ชำระผ่าน: {{admin.payment_pay}}
+สั่งเมื่อ: {{admin.payment_time}}
+</pre>
+        <a ng-click="bt_admin_del({{admin.payment_id}})"
+          class="button  button-balanced button-clear   icon ion-android-delete"> </a>
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

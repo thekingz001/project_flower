@@ -1,13 +1,11 @@
 <ion-view title="Cart">
     <ion-content padding="'true'" class="has-header">
         <div>
-            <p>รวม ( {{ total_qty }} ) =
-                <strong> {{total_amount}} บาท</strong>
-            </p>
+            <p>รวม ( {{ total_qty }} ) = <strong> {{total_amount}} บาท</strong></p>
         </div>
         <button ng-click="checkout()" class="button button-positive button-block ">Check Out</button>
 		
-		<div ng-repeat="item in cart"   >
+		<div ng-repeat="item in cart">
 			<div class="list card" >
 				<div class="item item-divider">{{item.cart_item_name}} </div>
 				<div class="item item-body">

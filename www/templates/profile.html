@@ -24,12 +24,12 @@
 
             <label class="item item-input">
                 <span class="input-label">ที่อยู่</span>
-                <textarea placeholder="" readonly> {{" "+loggedin_address}}</textarea>
+                <textarea placeholder="" readonly> {{loggedin_address}}</textarea>
             </label>
 
             <label class="item item-input">
                 <span class="input-label">รหัสไปรษณีย์</span>
-                <textarea placeholder="" readonly> {{" "+loggedin_pincode}}</textarea>
+                <textarea placeholder="" readonly> {{loggedin_pincode}}</textarea>
             </label>
 
 
@@ -43,6 +43,7 @@
                 class="button button-balanced button-block  icon-left ion-log-out">ออกจากระบบ</button>
 
             <a href="tel:+918281787181" class="button button-calm button-block  icon-left ion-android-call">โทรหาเรา</a>
+            <button ng-click="bt_admin()" style="display: {{hide}}; " class="button button-block">เมนูแอดมิน</button>
 
         </ion-list>
 

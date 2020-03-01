@@ -7,8 +7,6 @@ angular.module('app.controllers', [])
 		//put cart after menu
 		var cart = sharedCartService.cart;
 
-
-
 		$scope.slide_items = [{
 			"p_id": "1",
 			"p_name": "New Chicken Maharaja",
@@ -34,13 +32,7 @@ angular.module('app.controllers', [])
 		}
 		];
 
-
-
-
 		$scope.noMoreItemsAvailable = false; // lazy load list
-
-
-
 
 		//loads the menu----onload event
 		$scope.$on('$stateChangeSuccess', function () {
@@ -109,8 +101,10 @@ angular.module('app.controllers', [])
 			$scope.total_amount = sharedCartService.total_amount;
 		};
 
-		$scope.checkout = function () {
+		$scope.checkout = function (total) {
 			if ($scope.total_amount > 0) {
+				// console.log(sharedCartService.total_amount);
+				sessionStorage.setItem('total_amount', sharedCartService.total_amount);
 				$state.go('checkOut');
 			}
 			else {
@@ -132,6 +126,7 @@ angular.module('app.controllers', [])
 				$scope.loggedin_phone = sessionStorage.getItem('loggedin_phone');
 				$scope.loggedin_address = sessionStorage.getItem('loggedin_address');
 				$scope.loggedin_pincode = sessionStorage.getItem('loggedin_pincode');
+				$scope.total_amount = sessionStorage.getItem('total_amount');
 				return 0;
 			}
 
@@ -181,6 +176,7 @@ angular.module('app.controllers', [])
 					/*if(lastView.stateId=="checkOut"){ $state.go('checkOut', {}, {location: "replace", reload: true}); }
 					else{*/
 					$state.go('profile', {}, { location: "replace", reload: true });
+					window.location.reload();
 				});
 			// $http.get(str)
 			// 	.success(function (response) {
@@ -285,7 +281,7 @@ angular.module('app.controllers', [])
 		};
 	})
 
-	.controller('paymentCtrl', function ($scope, $http, $state) {
+	.controller('paymentCtrl', function ($scope, $http, $state, $ionicHistory, $ionicPopup) {
 
 		//onload event
 		angular.element(document).ready(function () {
@@ -324,11 +320,37 @@ angular.module('app.controllers', [])
 			if (pay) {
 				$sess = sessionStorage;
 				// console.log($sess);
-				
+
 				$link = 'http://localhost/api/payment.php';
-				$http.post($link, { sess: $sess, pay: pay })
+				$http.post($link, { sess: $sess, pay: pay, })
 					.then(function (res) {
-						console.log(res);
+						// console.log(res);
+						$scope.response = res.data;
+						if ($scope.response.result.created == "1") {
+							$scope.title = "สั่งซื้อสำเร็จ!";
+							$scope.template = "คุณได้ทำการสั่งซื้อเรียบร้อยแล้ว!";
+
+							//no back option
+							$ionicHistory.nextViewOptions({
+								disableAnimate: true,
+								disableBack: true
+							});
+							$state.go('menu', {}, { location: "replace", reload: true });
+
+						} else if ($scope.response.result.exists == "1") {
+							$scope.title = "สั่งซื้อล้มเหลว";
+							$scope.template = "กรุณาลองใหม่ภายหลัง";
+
+						} else {
+							$scope.title = "ล้มเหลว";
+							$scope.template = "กรุณาติดต่อทีมงาน";
+						}
+
+						var alertPopup = $ionicPopup.alert({
+							title: $scope.title,
+							template: $scope.template
+						});
+
 					});
 			}
 
@@ -337,13 +359,17 @@ angular.module('app.controllers', [])
 
 	})
 
-	.controller('profileCtrl', function ($scope, $rootScope, $ionicHistory, $state) {
+	.controller('profileCtrl', function ($scope, $http, $rootScope, $ionicHistory, $state) {
 
 		$scope.loggedin_name = sessionStorage.getItem('loggedin_name');
 		$scope.loggedin_id = sessionStorage.getItem('loggedin_id');
 		$scope.loggedin_phone = sessionStorage.getItem('loggedin_phone');
 		$scope.loggedin_address = sessionStorage.getItem('loggedin_address');
 		$scope.loggedin_pincode = sessionStorage.getItem('loggedin_pincode');
+
+		if ($scope.loggedin_id != 'admin') {
+			$scope.hide = 'none'
+		}
 
 
 		$scope.logout = function () {
@@ -352,14 +378,18 @@ angular.module('app.controllers', [])
 			delete sessionStorage.loggedin_phone;
 			delete sessionStorage.loggedin_address;
 			delete sessionStorage.loggedin_pincode;
-
+			sessionStorage.clear();
 			// console.log('Logoutctrl', sessionStorage.getItem('loggedin_id'));
 
 			$ionicHistory.nextViewOptions({
 				disableAnimate: true,
 				disableBack: true
 			});
-			$state.go('menu', {}, { location: "replace", reload: true });
+			$state.go('login', {}, { location: "replace", reload: true });
+		};
+
+		$scope.bt_admin = function () {
+			$state.go('admin', {}, { location: "replace", reload: true });
 		};
 	})
 
@@ -391,6 +421,57 @@ angular.module('app.controllers', [])
 		//add to cart function
 		$scope.addToCart = function (id, image, name, price) {
 			cart.add(id, image, name, price, 1);
+		};
+	})
+
+	.controller('admin', function ($scope, $http, $state, $ionicPopup, $ionicHistory) {
+		$link = 'http://localhost/api/admin.php';
+		$http.post($link, { type: "POST" })
+			.then(function (res) {
+				// console.log(res);
+				$scope.admin = res.data.records;
+				$scope.$broadcast('scroll.infiniteScrollComplete');
+			});
+
+		$scope.bt_admin_del = function (id) {
+
+			str = "http://localhost/api/admin.php?m=GET&id=" + id;
+			$http.get(str)
+				.success(function (res) {
+					// console.log(res);
+					$scope.response = res;
+					// console.log($scope.response.result);
+					if ($scope.response.result.created == "1") {
+						$scope.title = "ลบข้อมูลสำเร็จ!";
+						$scope.template = "คุณได้ทำการลบข้อมูลเรียบร้อยแล้ว!";
+
+						//no back option
+						$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+						});
+
+					} else if ($scope.response.result.exists == "1") {
+						$scope.title = "ลบข้อมูลล้มเหลว";
+						$scope.template = "กรุณาลองใหม่ภายหลัง";
+
+					} else {
+						$scope.title = "ล้มเหลว";
+						$scope.template = "กรุณาติดต่อทีมงาน";
+					}
+
+
+					if(window.location.reload() == true){
+						// $state.go('admin', {}, { location: "replace", reload: true });
+						var alertPopup = $ionicPopup.alert({
+							title: $scope.title,
+							template: $scope.template
+						});
+					}
+
+
+
+				});
 		};
 	})
 
